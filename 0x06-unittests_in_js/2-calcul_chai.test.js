@@ -19,6 +19,6 @@ describe('calculateNumber', function () {
 		expect(calculateNumber('DIVIDE', 3, 0), 'Error');
 	});
 	it('should handle the invalid', function () {
-		expect(calculateNumber('INVALID', 2, 3), 'Invalid type');
+		expect(calculateNumber('INVALID', 2, 3)).to.equal('Invalid type');
 	});
 });
