@@ -5,7 +5,7 @@ const app = http.createServer((req, res) => {
   
   res.setHeader('Content-Type', 'text/plain');
 
-  res.end('Hello Holberton School!\n');
+  res.end('Hello Holberton School!');
 });
 
 
