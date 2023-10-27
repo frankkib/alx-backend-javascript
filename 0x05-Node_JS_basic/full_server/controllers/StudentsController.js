@@ -12,7 +12,7 @@ export class StudentsController {
       fields.forEach((field) => {
         const studentsInField = data[field];
         responseData.push(
-          `Number of students in ${field}: ${studentsInField.length}. List: ${studentsInField.join(', ')}`
+          `Number of students in ${field}: ${studentsInField.length}. List: ${studentsInField.join(', ')}`,
         );
       });
 
@@ -44,4 +44,3 @@ export class StudentsController {
     }
   }
 }
-
