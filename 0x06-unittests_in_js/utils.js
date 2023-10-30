@@ -1,6 +1,7 @@
+// utils.js
 const Utils = {
   calculateNumber: (type, a, b) => {
-    
+    // Round the input values for consistency
     a = Math.round(a);
     b = Math.round(b);
 
@@ -13,11 +14,11 @@ const Utils = {
         return a * b;
       case 'DIVIDE':
         if (b === 0) {
-          return "Error: Division by zero";
+          return 'error';
         }
         return a / b;
       default:
-        return "Invalid operation type";
+        return 'Invalid operation type';
     }
   },
 };
