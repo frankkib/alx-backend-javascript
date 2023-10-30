@@ -1,19 +1,26 @@
-function calculateNumber(type, a, b) {
-	a = Math.round(a);
-	b = Math.round(b);
-	if (type === "SUM") {
-		return a + b;
-	} else if (type === "SUBTRACT") {
-		return a - b;
-	} else if (type === "DIVIDE") {
-		if (b === 0) {
-			return "Error";
-		}
-		return a / b;
-	} else {
-		return "Invalid type";
-	}
-}
+const Utils = {
+  calculateNumber: (type, a, b) => {
+    
+    a = Math.round(a);
+    b = Math.round(b);
 
+    switch (type) {
+      case 'SUM':
+        return a + b;
+      case 'SUBTRACT':
+        return a - b;
+      case 'MULTIPLY':
+        return a * b;
+      case 'DIVIDE':
+        if (b === 0) {
+          return "Error: Division by zero";
+        }
+        return a / b;
+      default:
+        return "Invalid operation type";
+    }
+  },
+};
 
-module.exports = calculateNumber;
+module.exports = Utils;
+
