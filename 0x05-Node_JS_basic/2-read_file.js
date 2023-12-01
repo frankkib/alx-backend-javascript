@@ -1,37 +1,46 @@
 const fs = require('fs');
-const csv = require('csv-parser');
 
 function countStudents(path) {
-	try {
-		const students = {};
-		const fields = {};
+  try {
+    const data = fs.readFileSync(path, 'utf8');
+    const rows = data.split('\n').filter(Boolean);
 
-		const data = fs.readFileSync(path, 'utf8');
+    const students = {};
+    const fieldCounts = {};
 
-		const lines = data.trim().split('\n');
+    // Skip the header line
+    rows.shift();
 
-		lines.forEach((line) => {
-			const [firstname, field] = line.split(',');
+    rows.forEach((row) => {
+      // eslint-disable-next-line no-unused-vars
+      const [firstname, lastname, age, field] = row.split(',').map((item) => item.trim());
 
-			if (firstname && field) {
-				if (!students[field]) {
-					students[field] = 0;
-					fields[field] = [];
-				}
-				students[field]++;
-				fields[field].push(firstname);
-			}
-		});
+      if (!students[firstname]) {
+        students[firstname] = { field, count: 0 };
+      }
 
-		console.log(`Number of students: ${lines.length}`);
+      if (!fieldCounts[field]) {
+        fieldCounts[field] = { count: 0, list: [] };
+      }
 
-		for (const field in students) {
-			console.log(`Number of students in ${field}: ${students[field].join(',')}`);
-			}
-			} catch (error) {
-				throw new Error('Can not load th database');
-			}
+      students[firstname].count += 1;
+      fieldCounts[field].count += 1;
+      fieldCounts[field].list.push(firstname);
+    });
+
+    console.log(`Number of students: ${rows.length}`);
+
+    Object.entries(fieldCounts)
+      .forEach(([field, { count, list }]) => {
+        console.log(`Number of students in ${field}: ${count}. List: ${list.join(', ')}`);
+      });
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.error('Cannot load the database');
+    } else {
+      throw error;
+    }
+  }
 }
-
 
 module.exports = countStudents;
