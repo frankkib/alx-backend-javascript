@@ -8,7 +8,7 @@ const app = http.createServer((req, res) => {
   if (parsedUrl.pathname === '/') {
     // Handle the / route
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello Holberton School!\n');
+    res.end('Hello Holberton School!');
   } else if (parsedUrl.pathname === '/students') {
     // Handle the /students route
     const databasePath = parsedUrl.query.database || 'database.csv';
