@@ -13,4 +13,3 @@ rl.on('line', (input) => {
   console.log('This important software is now closing');
   rl.close();
 });
-
