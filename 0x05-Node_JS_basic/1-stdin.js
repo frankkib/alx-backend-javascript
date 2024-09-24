@@ -5,11 +5,11 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-console.log('Welcome to Holberton School, what is your name?');
+console.log('Welcome to Holberton School, what is your name?\n');
 
 rl.on('line', (input) => {
   const name = input.trim();
-  console.log(`Your name is: ${name}`);
-  console.log('This important software is now closing');
+  console.log(`Your name is: ${name}\n`);
+  console.log('This important software is now closing\n');
   rl.close();
 });
